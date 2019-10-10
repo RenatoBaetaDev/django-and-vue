@@ -1,7 +1,7 @@
 <template>
   <section class="container">
     <h1>Página principal</h1>
-    <button v-if="authenticated">Logout</button>
+    <button v-if="authenticated"  @click="logout">Logout</button>
   </section>
 </template>
 
@@ -26,6 +26,19 @@ export default {
       } else {
         this.authenticated = true;
       }
+    },
+    logout() {
+      this.$session.destroy();
+      router.push("/");
+      // axios
+      //   .post("http://localhost:8000/auth/token/logout", this.credentials)
+      //   .then(res => {
+      //     router.push("/");
+      //   })
+      //   .catch(e => {
+      //     this.errorShow = true
+      //     console.log(e)
+      //   });            
     }
   }
 };
