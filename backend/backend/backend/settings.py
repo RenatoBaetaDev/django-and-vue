@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
     'books',
+    'characters',
 ]
 
 JWT_AUTH = {

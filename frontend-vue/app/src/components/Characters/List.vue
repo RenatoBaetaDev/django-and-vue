@@ -13,7 +13,7 @@
         </v-btn>
         <v-divider></v-divider>
       </div>
-      <CreateCharacter @updateCharacters="all"></CreateCharacter>
+      <CreateCharacters @updateCharacters="all"></CreateCharacters>
   </v-container>
 </template>
 
