@@ -13,24 +13,54 @@
 
       <v-card>
         <v-card-title>
-          <span class="headline">Adicionar Livros</span>
+          <span class="headline">Adicionar Personagem</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field v-model="book.name" label="Título*" hint="Título do livro" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field
-                  v-model="book.author"
-                  label="Autor*"
-                  hint="Nome do autor do livro"
+                <v-text-field 
+                  v-model="character.name" 
+                  label="Nome*" 
+                  hint="Nome do Personagem" 
                   required
                 ></v-text-field>
               </v-col>
+              
               <v-col cols="12">
-                <v-text-field v-model="book.description" label="Descrição*" type="text" required></v-text-field>
+                <v-text-field
+                  v-model="character.book"
+                  label="Livro*"
+                  hint="Livro do Personagem"
+                  required
+                ></v-text-field>
+              </v-col>
+
+              <v-col class="d-flex" cols="12">
+                <v-select
+                  v-model="character.gender"
+                  item-text="gender"
+                  item-value="value"
+                  :items="items"
+                  label="Gênero*"
+                  hint="Gênero do Personagem"
+                  required
+                  dense
+                ></v-select>
+              </v-col>              
+
+              <v-col cols="12">
+                <v-text-field v-model="character.description" label="Descrição*" type="text" required></v-text-field>
+              </v-col>
+
+              <v-col cols="12">
+                <v-file-input
+                  v-model="character.picture"
+                  label="Imagem"
+                  hint="Imagem do Personagem"
+                  prepend-icon="mdi-camera"                
+                >
+                </v-file-input>
               </v-col>
             </v-row>
           </v-container>
@@ -52,14 +82,28 @@ export default {
   data() {
     return {
       dialog: false,
-      book: {}
+      character: {},
+      items: [
+        {
+          value: 1,
+          gender:'Homem',
+        },
+        { 
+          value: 2,
+          gender:'Mulher',
+        },
+        {
+          value: 3,
+          gender:'Outro',
+        }
+      ]
     };
   },
   methods: {
-    add() {
+    add() {      
       axios
         .post("http://localhost:8000/api/characters/add/",
-          this.book, 
+          this.character, 
           {
             headers: {
               Authorization: `Token ${this.$session.get("token")}`

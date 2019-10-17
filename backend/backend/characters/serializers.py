@@ -5,5 +5,6 @@ class CharacterSerializer(serializers.ModelSerializer):
     class Meta:
         model = Character
         fields = (
-            'id', 'name', 'gender', 'description', 'book', 'picture',  'created'
+            'id', 'name', 'gender', 'description', 'book',
+            'picture', 'created'
         )

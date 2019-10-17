@@ -1,6 +1,8 @@
 from django.conf.urls import url
 
-from .views import CharacterCreate, CharacterDestroy, CharacterGet, CharacterList, CharacterUpdate
+from .views import (
+    CharacterCreate, CharacterDestroy, CharacterGet, CharacterList, CharacterUpdate,
+)
 
 urlpatterns = [
     url(r'characters/$', CharacterList.as_view()),
