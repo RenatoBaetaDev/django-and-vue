@@ -6,7 +6,7 @@ class Character(models.Model):
     gender = models.BigIntegerField()
     description = models.TextField()
     book = models.CharField(max_length=100)
-    picture = models.FileField(upload_to='characters/%Y/%m/%d')
+    picture = models.CharField(max_length=100)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

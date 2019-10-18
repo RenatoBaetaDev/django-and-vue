@@ -58,7 +58,8 @@
                   v-model="character.picture"
                   label="Imagem"
                   hint="Imagem do Personagem"
-                  prepend-icon="mdi-camera"                
+                  prepend-icon="mdi-camera"      
+                  accept="image/*"          
                 >
                 </v-file-input>
               </v-col>
@@ -86,11 +87,11 @@ export default {
       items: [
         {
           value: 1,
-          gender:'Homem',
+          gender:'Masculino',
         },
         { 
           value: 2,
-          gender:'Mulher',
+          gender:'Feminino',
         },
         {
           value: 3,
@@ -101,6 +102,8 @@ export default {
   },
   methods: {
     add() {      
+      this.character.picture = this.character.picture.name
+      console.log(this.character)
       axios
         .post("http://localhost:8000/api/characters/add/",
           this.character, 
