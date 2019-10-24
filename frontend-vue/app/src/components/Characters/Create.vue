@@ -84,6 +84,7 @@ export default {
     return {
       dialog: false,
       character: {},
+      form: {},
       items: [
         {
           value: 1,
@@ -102,8 +103,9 @@ export default {
   },
   methods: {
     add() {      
-      this.character.picture = this.character.picture.name
-      console.log(this.character)
+      this.form = new FormData();
+      this.form.append('picture', this.character.picture)
+      this.character.picture = this.character.picture.name      
       axios
         .post("http://localhost:8000/api/characters/add/",
           this.character, 
@@ -118,6 +120,21 @@ export default {
           this.$emit('updateCharacters')
           this.log.console(response)
         });
+
+      console.log(this.form)
+
+      axios
+        .post("http://localhost:8000/api/files/upload/",
+          this.form,
+          {
+            headers: {
+              Authorization: `Token ${this.$session.get("token")}`
+            }
+          }
+        )
+        .then(response => {
+          console.log(response)
+        })
     }
   }
 };
